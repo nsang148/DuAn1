@@ -68,4 +68,15 @@ public class KhuyenMaiHDImpl implements KhuyenMaiHDService {
         }
     }
 
+    @Override
+    public ArrayList<KhuyenMaiHD> searchKM(String tk) {
+        ArrayList<KhuyenMaiHD> temp = new ArrayList<>();
+        for (KhuyenMaiHD item : KMHDR.getAll()) {
+            if (item.getMa().equals(tk)) {
+                temp.add(item);
+            }
+        }
+        return temp;
+    }
+
 }
