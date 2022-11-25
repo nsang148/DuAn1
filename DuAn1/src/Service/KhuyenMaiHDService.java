@@ -18,4 +18,5 @@ public interface KhuyenMaiHDService {
     String sua(KhuyenMaiHD obj);
     KhuyenMaiHD getKMHDByID(String id);
     String getTrangThai(int tt);
+    ArrayList<KhuyenMaiHD> searchKM(String tk);
 }
