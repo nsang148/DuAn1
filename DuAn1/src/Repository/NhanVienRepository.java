@@ -5,9 +5,7 @@
 package Repository;
 
 import DomainModels.NhanVien;
-import Untility.DBConnect_cuong;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+import Untility.DBContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -28,7 +26,7 @@ public class NhanVienRepository {
         List<NhanVien> listNhanVien = new ArrayList<>();
         String SELECT_NHANVIEN = "SELECT * FROM KHUYENMAIHOADON";
         try {
-            Connection conn = DBConnect_cuong.getConnection();
+            Connection conn = DBContext.getConnection();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(SELECT_NHANVIEN);
             while (rs.next()) {
@@ -56,7 +54,7 @@ public class NhanVienRepository {
 
     public boolean insert(NhanVien obj) {
         try {
-            Connection conn = DBConnect_cuong.getConnection();
+            Connection conn = DBContext.getConnection();
             Statement st = conn.createStatement();
             String INSERT_NHANVIEN = "INSERT INTO dbo.NHANVIEN(MANV,TEN,TENDEM,HO,GIOITINH,NGAYSINH,SDT,DIACHI,MATKHAU,TINHTRANG,VAITRO,ANH) VALUES (" + obj.getMaNV() + ","
                     + "" + obj.getTen() + ","
@@ -86,7 +84,7 @@ public class NhanVienRepository {
 
     public boolean delete(String ID) {
         try {
-            Connection conn = DBConnect_cuong.getConnection();
+            Connection conn = DBContext.getConnection();
             Statement st = conn.createStatement();
             String REMOVE_NHANVIEN = "DELETE FROM NHANVIEN WHERE ID = '" + ID + "'";
             st.executeUpdate(REMOVE_NHANVIEN);
@@ -103,7 +101,7 @@ public class NhanVienRepository {
     }
 
     public boolean update(NhanVien obj) {
-        try ( Connection conn = DBConnect_cuong.getConnection()) {
+        try ( Connection conn = DBContext.getConnection()) {
             Statement st = conn.createStatement();
             String UPDATE_NHANVIEN = "UPDATE NHANVIEN SET MANV = '" + obj.getMaNV()
                     + "',TEN = '" + obj.getTen()
@@ -135,7 +133,7 @@ public class NhanVienRepository {
         NhanVien obj = new NhanVien();
         String SEARCH_NHANVIEN = "SELECT * FROM NHANVIEN WHERE ID = " + ID + "";
         try {
-            Connection conn = DBConnect_cuong.getConnection();
+            Connection conn = DBContext.getConnection();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(SEARCH_NHANVIEN);
             while (rs.next()) {
